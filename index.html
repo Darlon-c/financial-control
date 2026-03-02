@@ -8,24 +8,29 @@
   </head>
   <body>
     <section>
-      <div>
-        <input class="border" type="text" id="inputName" placeholder="Descrição">
-        <input class="border" type="number" id="price" placeholder="Valor">
-        <select class="border" id="type">
+      <div class="flex justify-center py-4 gap-7">
+        <input class="text-center border rounded-xl" type="text" id="inputName" placeholder="Descrição">
+        <input class="text-center border rounded-lg" type="number" id="price" placeholder="Valor">
+        <select class="text-center border rounded-lg" id="type">
           <option value="entry">Entrada</option>
           <option value="exit">Saída</option> 
         </select>
-        <select class="border" id="categories">
+        <select class="text-center border rounded-lg" id="categories">
           <option value="alimentação">Alimentação</option>
           <option value="transporte">Transporte</option>
           <option value="lazer">Lazer</option>
           <option value="outros">Outros</option>
         </select>
-        <input class="border" type="date">
+        <input class="border rounded-xl" type="date" id="date">
         <button class="px-2 py-2 font-sans bg-indigo-500 rounded-md" id="register">Registrar</button>
       </div>
+
+      <!-- lista de registro -->
+      <div id="listOfRegister"></div>
+
     </section>
 
+      
 
     <script src="/Js/index.js"></script>
   </body>
