@@ -6,9 +6,26 @@
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body class="bg-green-100">
+  <body>
+    <section>
+      <div>
+        <input class="border" type="text" id="inputName" placeholder="Descrição">
+        <input class="border" type="number" id="price" placeholder="Valor">
+        <select  id="type">
+          <option value="entry">Entrada</option>
+          <option value="exit">Saída</option> 
+        </select>
+        <select id="categories">
+          <option value="alimentação">Alimentação</option>
+          <option value="transporte">Transporte</option>
+          <option value="lazer">Lazer</option>
+          <option value="outros">Outros</option>
+        </select>
+        <input type="date">
+      </div>
+    </section>
 
 
-    <script src="index.js"></script>
+    <script src="/Js/index.js"></script>
   </body>
 </html>
