@@ -4,7 +4,7 @@ const inputType = document.getElementById("type");
 const inputCategories = document.getElementById("categories");
 const inputDate = document.getElementById("date");
 const btnRegister = document.getElementById("register");
-const listOfRegister = document.getElementById('listOfRegister')
+const listOfRegister = document.getElementById("listOfRegister");
 
 let registerList = [];
 let idCount = 1;
@@ -29,7 +29,7 @@ function newRegister() {
 
   registerList.push(register);
   idCount++;
-  renderRegister()
+  renderRegister();
 
   inputName.value = "";
   inputPrice.value = "";
@@ -37,20 +37,30 @@ function newRegister() {
 }
 
 function renderRegister() {
-    const render = registerList.map((register) => {
-        return `
+  const render = registerList.map((register) => {
+    return `
             <div>
-            <p>${register.description}
+            <p>${register.description}</p>
+            <p>${register.price}</p>
+            <p>${register.type}</p>
+            <p>${register.categorie}</p>
+            <p>${register.date}</p>
             
-    
+            <button onclick="removeRegister(${register.id})">Remover</button>
             </div>
         
-        `
-    })
+        `;
+  });
 
-    listOfRegister.innerHTML = render
-    
+  listOfRegister.innerHTML = render;
 }
 
+function removeRegister(id) {
+  registerList = registerList.filter((register) => {
+    return register.id !== id;
+  });
+
+  renderRegister();
+}
 
 btnRegister.addEventListener("click", newRegister);
