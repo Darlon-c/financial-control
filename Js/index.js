@@ -40,12 +40,12 @@ function newRegister() {
 function renderRegister() {
   const render = registerList.map((register) => {
     return `
-            <div>
+            <div class="flex gap-4">
             <p>${register.description}</p>
-            <p>${register.price}</p>
-            <p>${register.type}</p>
-            <p>${register.categorie}</p>
-            <p>${register.date}</p>
+            <p>Valor: R$${register.price.toFixed(2)}</p>
+            <p>Tipo: ${register.type}</p>
+            <p>Categoria: ${register.categorie}</p>
+            <p>Data: ${register.date}</p>
             
             <button onclick="removeRegister(${register.id})">Remover</button>
             </div>
