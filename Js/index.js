@@ -78,29 +78,14 @@ function showTotalValue(lista = registerList) {
 
 function filtered() {
   const filter = filterSelect.value;
-  console.log("1. Filtro selecionado:", filter);
-  console.log("2. Lista completa atual:", registerList);
 
   if (filter === "all") {
-    console.log("3. Renderizando todos");
     renderRegister(registerList);
   } else if (filter === "entry") {
-    console.log("3. Filtrando entradas");
-    const entry = registerList.filter((register) => {
-      console.log("   Registro sendo verificado:", register);
-      console.log("   register.type === 'entry'?", register.type === "entry");
-      return register.type === "entry";
-    });
-    console.log("4. Entradas encontradas:", entry);
+    const entry = registerList.filter((register) => register.type === "entry");
     renderRegister(entry);
   } else if (filter === "exit") {
-    console.log("3. Filtrando saídas");
-    const exit = registerList.filter((register) => {
-      console.log("   Registro sendo verificado:", register);
-      console.log("   register.type === 'exit'?", register.type === "exit");
-      return register.type === "exit";
-    });
-    console.log("4. Saídas encontradas:", exit);
+    const exit = registerList.filter((register) => register.type === "exit");
     renderRegister(exit);
   }
 }
