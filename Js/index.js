@@ -5,6 +5,7 @@ const inputCategories = document.getElementById("categories");
 const inputDate = document.getElementById("date");
 const btnRegister = document.getElementById("register");
 const listOfRegister = document.getElementById("listOfRegister");
+const totalPrice = document.getElementById('totalPrice')
 
 let registerList = [];
 let idCount = 1;
