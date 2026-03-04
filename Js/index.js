@@ -6,6 +6,7 @@ const inputDate = document.getElementById("date");
 const btnRegister = document.getElementById("register");
 const listOfRegister = document.getElementById("listOfRegister");
 const totalBalance = document.getElementById("totalBalance");
+const filterSelect = document.getElementById("filterSelect");
 
 let registerList = [];
 let idCount = 1;
@@ -37,8 +38,8 @@ function newRegister() {
   console.log(registerList);
 }
 
-function renderRegister() {
-  const render = registerList.map((register) => {
+function renderRegister(listToRender = registerList) {
+  const render = listToRender.map((register) => {
     return `
             <div class="flex gap-4">
             <p>${register.description}</p>
@@ -54,7 +55,7 @@ function renderRegister() {
   });
 
   listOfRegister.innerHTML = render.join("");
-  showTotalValue();
+  showTotalValue(listToRender);
 }
 
 function removeRegister(id) {
@@ -65,14 +66,44 @@ function removeRegister(id) {
   renderRegister();
 }
 
-function showTotalValue() {
-  const totalValue = registerList
+function showTotalValue(lista = registerList) {
+  const totalValue = lista
     .filter((register) => register.price)
     .reduce((acc, register) => {
-      return (acc += register.price);
+      return acc + register.price;
     }, 0);
 
   totalBalance.innerHTML = `Valor total: R$ ${totalValue.toFixed(2)}`;
 }
 
+function filtered() {
+  const filter = filterSelect.value;
+  console.log("1. Filtro selecionado:", filter);
+  console.log("2. Lista completa atual:", registerList);
+
+  if (filter === "all") {
+    console.log("3. Renderizando todos");
+    renderRegister(registerList);
+  } else if (filter === "entry") {
+    console.log("3. Filtrando entradas");
+    const entry = registerList.filter((register) => {
+      console.log("   Registro sendo verificado:", register);
+      console.log("   register.type === 'entry'?", register.type === "entry");
+      return register.type === "entry";
+    });
+    console.log("4. Entradas encontradas:", entry);
+    renderRegister(entry);
+  } else if (filter === "exit") {
+    console.log("3. Filtrando saídas");
+    const exit = registerList.filter((register) => {
+      console.log("   Registro sendo verificado:", register);
+      console.log("   register.type === 'exit'?", register.type === "exit");
+      return register.type === "exit";
+    });
+    console.log("4. Saídas encontradas:", exit);
+    renderRegister(exit);
+  }
+}
+
 btnRegister.addEventListener("click", newRegister);
+filterSelect.addEventListener("change", filtered);

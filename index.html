@@ -23,8 +23,8 @@
             placeholder="Valor"
           />
           <select class="text-center border rounded-lg" id="type">
-            <option value="entrada">Entrada</option>
-            <option value="saída">Saída</option>
+            <option value="entry">Entrada</option>
+            <option value="exit">Saída</option>
           </select>
           <select class="text-center border rounded-lg" id="categories">
             <option value="alimentação">Alimentação</option>
@@ -45,6 +45,18 @@
         <div class="grid col-span-2">
           <div id="listOfRegister"></div>
           <div id="totalBalance"></div>
+        </div>
+
+        <!--  -->
+        <div class="grid col-span-1">
+          <h1>filtros valor totais</h1>
+          <div>
+            <select id="filterSelect">
+              <option value="all">Todos</option>
+              <option value="entry">Entradas</option>
+              <option value="exit">Saídas</option>
+            </select>
+          </div>
         </div>
       </div>
     </section>
