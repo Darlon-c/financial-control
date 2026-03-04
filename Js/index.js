@@ -66,12 +66,16 @@ function removeRegister(id) {
   renderRegister();
 }
 
-function showTotalValue(lista = registerList) {
-  const totalValue = lista
-    .filter((register) => register.price)
-    .reduce((acc, register) => {
-      return acc + register.price;
-    }, 0);
+function showTotalValue(list = registerList) {
+  const totalValue = list.reduce((acc, register) => {
+    if (register.type === "entry") {
+      acc += register.price;
+    } else {
+      acc -= register.price;
+    }
+
+    return acc;
+  }, 0);
 
   totalBalance.innerHTML = `Valor total: R$ ${totalValue.toFixed(2)}`;
 }
