@@ -5,7 +5,7 @@ const inputCategories = document.getElementById("categories");
 const inputDate = document.getElementById("date");
 const btnRegister = document.getElementById("register");
 const listOfRegister = document.getElementById("listOfRegister");
-const totalPrice = document.getElementById('totalPrice')
+const totalBalance = document.getElementById("totalBalance");
 
 let registerList = [];
 let idCount = 1;
@@ -53,7 +53,8 @@ function renderRegister() {
         `;
   });
 
-  listOfRegister.innerHTML = render;
+  listOfRegister.innerHTML = render.join("");
+  showTotalValue();
 }
 
 function removeRegister(id) {
@@ -62,6 +63,16 @@ function removeRegister(id) {
   });
 
   renderRegister();
+}
+
+function showTotalValue() {
+  const totalValue = registerList
+    .filter((register) => register.price)
+    .reduce((acc, register) => {
+      return (acc += register.price);
+    }, 0);
+
+  totalBalance.innerHTML = `Valor total: R$ ${totalValue.toFixed(2)}`;
 }
 
 btnRegister.addEventListener("click", newRegister);
