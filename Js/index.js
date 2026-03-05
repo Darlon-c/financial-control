@@ -9,6 +9,7 @@ const listOfRegister = document.getElementById("listOfRegister");
 const totalBalance = document.getElementById("totalBalance");
 const filterSelect = document.getElementById("filterSelect");
 
+// valida se já tem registro no local storage, se tiver carrega e se não começa com o array vazio
 let registerList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 let idCount = 1;
 // criar um novo registro e adiciona no array
