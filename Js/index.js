@@ -51,6 +51,11 @@ function renderRegister(listToRender = registerList) {
       : "bg-rose-100 text-rose-600";
     const icon = isEntry ? "fa-arrow-up" : "fa-arrow-down";
 
+    const formattedDate = new Date(register.date).toLocaleDateString(
+      "pt-BR",
+      { timeZone: "UTC" },
+    );
+
     return `
       <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border-l-4 ${isEntry ? "border-emerald-500" : "border-rose-500"} hover:shadow-md transition-shadow">
         <div class="flex items-center gap-4">
@@ -61,7 +66,7 @@ function renderRegister(listToRender = registerList) {
             <h3 class="font-bold text-slate-700 capitalize">${register.description}</h3>
             <div class="flex gap-2 text-xs text-slate-400 items-center">
               <span class="bg-slate-100 px-2 py-0.5 rounded">${register.category}</span>
-              <span>${register.date}</span>
+              <span>${formattedDate}</span>
             </div>
           </div>
         </div>
