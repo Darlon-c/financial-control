@@ -1,3 +1,4 @@
+const STORAGE_KEY = 'my_finance'
 const inputName = document.getElementById("inputName");
 const inputPrice = document.getElementById("price");
 const inputType = document.getElementById("type");
@@ -8,7 +9,7 @@ const listOfRegister = document.getElementById("listOfRegister");
 const totalBalance = document.getElementById("totalBalance");
 const filterSelect = document.getElementById("filterSelect");
 
-let registerList = [];
+let registerList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 let idCount = 1;
 // criar um novo registro e adiciona no array
 function newRegister() {
@@ -31,6 +32,7 @@ function newRegister() {
 
   registerList.push(register);
   idCount++;
+  reloadRegister()
   renderRegister();
 
   inputName.value = "";
@@ -87,7 +89,7 @@ function removeRegister(id) {
   registerList = registerList.filter((register) => {
     return register.id !== id;
   });
-
+  reloadRegister()
   renderRegister();
 }
 // valor total
@@ -119,6 +121,15 @@ function filtered() {
   }
 }
 
+// LocalStorage
+
+function reloadRegister() {
+   localStorage.setItem(STORAGE_KEY, JSON.stringify(registerList))
+}
+
+
+
 // eventos e chamada das funçoes
+renderRegister()
 btnRegister.addEventListener("click", newRegister);
 filterSelect.addEventListener("change", filtered);
