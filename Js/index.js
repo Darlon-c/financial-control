@@ -119,6 +119,15 @@ function filtered() {
   } else if (filter === "exit") {
     const exit = registerList.filter((register) => register.type === "exit");
     renderRegister(exit);
+  } else if (filter === "alimentação") {
+    const food = registerList.filter((register) => register.category === "alimentação");
+    renderRegister(food);
+  } else if (filter === "lazer") {
+    const lazer = registerList.filter((register) => register.category === "lazer");
+    renderRegister(lazer);
+  }else if (filter === "transporte") {
+    const transport = registerList.filter((register) => register.category === "transporte");
+    renderRegister(transport);
   }
 }
 
