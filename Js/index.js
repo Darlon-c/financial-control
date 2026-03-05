@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'my_finance'
+const STORAGE_KEY = "my_finance";
 const inputName = document.getElementById("inputName");
 const inputPrice = document.getElementById("price");
 const inputType = document.getElementById("type");
@@ -33,14 +33,14 @@ function newRegister() {
 
   registerList.push(register);
   idCount++;
-  reloadRegister()
+  reloadRegister();
   renderRegister();
 
   inputName.value = "";
   inputPrice.value = "";
   console.log(registerList);
 }
-// exibir na tela 
+// exibir na tela
 function renderRegister(listToRender = registerList) {
   const render = listToRender.map((register) => {
     // Lógica para cor e ícone baseada no tipo
@@ -90,7 +90,7 @@ function removeRegister(id) {
   registerList = registerList.filter((register) => {
     return register.id !== id;
   });
-  reloadRegister()
+  reloadRegister();
   renderRegister();
 }
 // valor total
@@ -123,14 +123,11 @@ function filtered() {
 }
 
 // LocalStorage
-
 function reloadRegister() {
-   localStorage.setItem(STORAGE_KEY, JSON.stringify(registerList))
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(registerList));
 }
 
-
-
 // eventos e chamada das funçoes
-renderRegister()
+renderRegister();
 btnRegister.addEventListener("click", newRegister);
 filterSelect.addEventListener("change", filtered);
