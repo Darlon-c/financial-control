@@ -10,7 +10,7 @@ const filterSelect = document.getElementById("filterSelect");
 
 let registerList = [];
 let idCount = 1;
-
+// criar um novo registro e adiciona no array
 function newRegister() {
   if (inputName.value === "") {
     alert("Informe uma descrição");
@@ -37,17 +37,19 @@ function newRegister() {
   inputPrice.value = "";
   console.log(registerList);
 }
-
+// exibir na tela 
 function renderRegister(listToRender = registerList) {
   const render = listToRender.map((register) => {
     // Lógica para cor e ícone baseada no tipo
     const isEntry = register.type === "entry";
     const colorClass = isEntry ? "text-emerald-600" : "text-rose-600";
-    const bgIcon = isEntry ? "bg-emerald-100 text-emerald-600" : "bg-rose-100 text-rose-600";
+    const bgIcon = isEntry
+      ? "bg-emerald-100 text-emerald-600"
+      : "bg-rose-100 text-rose-600";
     const icon = isEntry ? "fa-arrow-up" : "fa-arrow-down";
 
     return `
-      <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border-l-4 ${isEntry ? 'border-emerald-500' : 'border-rose-500'} hover:shadow-md transition-shadow">
+      <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border-l-4 ${isEntry ? "border-emerald-500" : "border-rose-500"} hover:shadow-md transition-shadow">
         <div class="flex items-center gap-4">
           <div class="w-10 h-10 ${bgIcon} rounded-full flex items-center justify-center">
             <i class="fa-solid ${icon}"></i>
@@ -63,7 +65,7 @@ function renderRegister(listToRender = registerList) {
         
         <div class="flex items-center gap-6">
           <span class="font-bold ${colorClass}">
-            ${isEntry ? '+' : '-'} R$ ${register.price.toFixed(2)}
+            ${isEntry ? "+" : "-"} R$ ${register.price.toFixed(2)}
           </span>
           <button onclick="removeRegister(${register.id})" class="text-slate-300 hover:text-rose-500 transition-colors">
             <i class="fa-solid fa-trash-can"></i>
@@ -73,13 +75,14 @@ function renderRegister(listToRender = registerList) {
     `;
   });
 
-  listOfRegister.innerHTML = render.length > 0 
-    ? render.join("") 
-    : `<p class="text-center text-slate-400 py-10">Nenhum registro encontrado.</p>`;
-  
+  listOfRegister.innerHTML =
+    render.length > 0
+      ? render.join("")
+      : `<p class="text-center text-slate-400 py-10">Nenhum registro encontrado.</p>`;
+
   showTotalValue(listToRender);
 }
-
+// remover registro
 function removeRegister(id) {
   registerList = registerList.filter((register) => {
     return register.id !== id;
@@ -87,7 +90,7 @@ function removeRegister(id) {
 
   renderRegister();
 }
-
+// valor total
 function showTotalValue(list = registerList) {
   const totalValue = list.reduce((acc, register) => {
     if (register.type === "entry") {
@@ -101,7 +104,7 @@ function showTotalValue(list = registerList) {
 
   totalBalance.innerHTML = `Valor total: R$ ${totalValue.toFixed(2)}`;
 }
-
+// Filtros
 function filtered() {
   const filter = filterSelect.value;
 
@@ -116,5 +119,6 @@ function filtered() {
   }
 }
 
+// eventos e chamada das funçoes
 btnRegister.addEventListener("click", newRegister);
 filterSelect.addEventListener("change", filtered);
