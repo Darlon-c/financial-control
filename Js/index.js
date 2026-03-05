@@ -24,7 +24,7 @@ function newRegister() {
     price: Number(inputPrice.value),
     id: idCount,
     type: inputType.value,
-    categorie: inputCategories.value,
+    category: inputCategories.value,
     description: inputName.value,
     date: inputDate.value,
   };
@@ -40,21 +40,43 @@ function newRegister() {
 
 function renderRegister(listToRender = registerList) {
   const render = listToRender.map((register) => {
+    // Lógica para cor e ícone baseada no tipo
+    const isEntry = register.type === "entry";
+    const colorClass = isEntry ? "text-emerald-600" : "text-rose-600";
+    const bgIcon = isEntry ? "bg-emerald-100 text-emerald-600" : "bg-rose-100 text-rose-600";
+    const icon = isEntry ? "fa-arrow-up" : "fa-arrow-down";
+
     return `
-            <div class="flex gap-4">
-            <p>${register.description}</p>
-            <p>Valor: R$${register.price.toFixed(2)}</p>
-            <p>Tipo: ${register.type}</p>
-            <p>Categoria: ${register.categorie}</p>
-            <p>Data: ${register.date}</p>
-            
-            <button onclick="removeRegister(${register.id})">Remover</button>
+      <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border-l-4 ${isEntry ? 'border-emerald-500' : 'border-rose-500'} hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 ${bgIcon} rounded-full flex items-center justify-center">
+            <i class="fa-solid ${icon}"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-700 capitalize">${register.description}</h3>
+            <div class="flex gap-2 text-xs text-slate-400 items-center">
+              <span class="bg-slate-100 px-2 py-0.5 rounded">${register.category}</span>
+              <span>${register.date}</span>
             </div>
+          </div>
+        </div>
         
-        `;
+        <div class="flex items-center gap-6">
+          <span class="font-bold ${colorClass}">
+            ${isEntry ? '+' : '-'} R$ ${register.price.toFixed(2)}
+          </span>
+          <button onclick="removeRegister(${register.id})" class="text-slate-300 hover:text-rose-500 transition-colors">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      </div>
+    `;
   });
 
-  listOfRegister.innerHTML = render.join("");
+  listOfRegister.innerHTML = render.length > 0 
+    ? render.join("") 
+    : `<p class="text-center text-slate-400 py-10">Nenhum registro encontrado.</p>`;
+  
   showTotalValue(listToRender);
 }
 
