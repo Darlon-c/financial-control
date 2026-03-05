@@ -175,7 +175,7 @@ function showGraphic() {
     return Math.abs(total); // Usar valor absoluto para o gráfico
   });
   myChart = new Chart(ctx, {
-    type: "bar", // Você pode mudar para 'pie', 'line', etc
+    type: "bar",
     data: {
       labels: categories.map((c) => c.charAt(0).toUpperCase() + c.slice(1)), // Capitalizar
       datasets: [
